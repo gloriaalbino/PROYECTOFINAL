@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rose</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-pink-50 min-h-screen flex flex-col items-center">
+    <!-- Navbar fijo -->
+    <nav class="bg-purple-500 text-white fixed top-0 w-full shadow-md z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center space-x-4">
+                    <img src="img/logo-sin-slogan.png" alt="logo-sin-slogan" class="h-8 w-8">
+                    <span class="font-semibold text-lg">Productos Oncológicos</span>
+                </div>
+
+                <!-- Menú toggle para pantallas pequeñas -->
+                <div class="sm:hidden flex items-center">
+                    <button id="menu-toggle" class="text-white focus:outline-none">
+                        <span class="material-icons">menu</span>
+                    </button>
+                </div>
+
+                <!-- Links del menú -->
+                <div id="menu" class="hidden sm:flex space-x-6 items-center">
+                    <a href="#cange" class="text-sm hover:underline flex items-center">
+                        <span class="material-icons mr-1">cached</span> Cange
+                    </a>
+                    <a href="#donaciones" class="text-sm hover:underline flex items-center">
+                        <span class="material-icons mr-1">volunteer_activism</span> Donaciones
+                    </a>
+                    <a href="#disponibilidad" class="text-sm hover:underline flex items-center">
+                        <span class="material-icons mr-1">price_check</span> Disponibilidad/Precios
+                    </a>
+                </div>
+
+                <!-- Barra de búsqueda -->
+                <div class="hidden sm:block relative">
+                    <input 
+                        type="text" 
+                        placeholder="Buscar productos..." 
+                        class="px-4 py-2 rounded-lg text-gray-700 w-64 focus:outline-none focus:ring-2 focus:ring-purple-300">
+                    <span class="material-icons absolute top-1/2 transform -translate-y-1/2 right-2 text-gray-400">search</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menú desplegable para móviles -->
+        <div id="mobile-menu" class="sm:hidden hidden bg-purple-600">
+            <a href="#cange" class="block px-4 py-2 text-sm hover:bg-purple-700">Cange</a>
+            <a href="#donaciones" class="block px-4 py-2 text-sm hover:bg-purple-700">Donaciones</a>
+            <a href="#disponibilidad" class="block px-4 py-2 text-sm hover:bg-purple-700">Disponibilidad/Precios</a>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <main class="w-full max-w-7xl px-6 py-24">
+        <!-- Sección Cange -->
+        <section id="cange" class="mb-12">
+            <h2 class="text-2xl font-semibold text-purple-700 mb-4">Cange</h2>
+            <p class="text-gray-600">Aquí encontrarás información sobre el intercambio de medicamentos oncológicos para garantizar acceso equitativo.</p>
+        </section>
+
+        <!-- Sección Donaciones -->
+        <section id="donaciones" class="mb-12">
+            <h2 class="text-2xl font-semibold text-purple-700 mb-4">Donaciones</h2>
+            <p class="text-gray-600">Contribuye a la causa mediante donaciones para ayudar a más personas a acceder a los tratamientos necesarios.</p>
+        </section>
+
+        <!-- Sección Disponibilidad y Precios -->
+        <section id="disponibilidad" class="mb-12">
+            <h2 class="text-2xl font-semibold text-purple-700 mb-4">Disponibilidad/Precios</h2>
+            <p class="text-gray-600">Consulta la disponibilidad y precios de nuestros productos oncológicos en esta sección.</p>
+        </section>
+
+        <!-- Lista de productos -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <script>
+                const productos = [
+                    { nombre: "Paclitaxel", concentracion: "300mg/50ml", forma: "Solución inyectable", lote: "111222" },
+                    { nombre: "Carboplatino", concentracion: "450mg/45ml", forma: "Solución inyectable", lote: "222333" },
+                    { nombre: "Rituximab", concentracion: "500mg/50ml", forma: "Solución inyectable", lote: "333444" },
+                    { nombre: "Etopósido", concentracion: "100mg/5ml", forma: "Solución inyectable", lote: "444555" },
+                    { nombre: "Imatinib", concentracion: "400mg/tableta", forma: "Tabletas", lote: "555666" },
+                    { nombre: "Vincristina", concentracion: "2mg/2ml", forma: "Solución inyectable", lote: "666777" },
+                    { nombre: "Irinotecán", concentracion: "40mg/ml", forma: "Solución inyectable", lote: "777888" },
+                    { nombre: "Gemcitabina", concentracion: "1g/polvo", forma: "Polvo para solución inyectable", lote: "888999" },
+                    { nombre: "Trastuzumab", concentracion: "440mg/polvo", forma: "Polvo para solución inyectable", lote: "999111" },
+                    { nombre: "Bevacizumab", concentracion: "100mg/ml", forma: "Solución inyectable", lote: "112233" }
+                ];
+
+                for (let i = 1; i <= 50; i++) {
+                    const producto = productos[i % productos.length];
+                    document.write(`
+                        <div class="bg-white shadow-md rounded-lg p-4">
+                            <h2 class="text-lg font-medium text-purple-700">${producto.nombre}</h2>
+                            <p class="text-sm text-gray-600">Concentración: ${producto.concentracion}</p>
+                            <p class="text-sm text-gray-600">Forma: ${producto.forma}</p>
+                            <p class="text-sm text-gray-600">Lote: ${producto.lote}</p>
+                            <button class="mt-4 bg-purple-500 text-white py-1 px-4 rounded-lg hover:bg-purple-600 transition">Detalles</button>
+                        </div>
+                    `);
+                }
+            </script>
+        </div>
+    </main>
+
+    <footer class="w-full bg-purple-700 text-white py-4 text-center">
+        <p class="text-sm">&copy; 2025 Productos Oncológicos. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Script para el menú toggle -->
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
