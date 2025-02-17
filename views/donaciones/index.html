@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rose</title>
+    <title>Donaciones Rose</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="/img/favicon.png" type="favicon">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
         body {
@@ -14,31 +16,8 @@
 </head>
 <body class="bg-pink-50 min-h-screen flex flex-col items-center">
     <!-- Navbar fijo -->
-    <nav class="bg-purple-500 text-white fixed top-0 w-full shadow-md z-10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <!-- Logo -->
-                <div class="flex items-center space-x-4">
-                    <img src="/img/logo-sin-slogan.png" alt="logo" class="h-8 w-8">
-                    <span class="font-semibold text-lg">Donaciones</span>
-                </div>
+    <nav id="navegacion" class="bg-purple-500 text-white fixed top-0 w-full shadow-md z-10">
 
-                <!-- Menú -->
-                <div class="hidden sm:flex space-x-6 items-center">
-                    <a href="#canje" class="text-sm hover:underline">canje</a>
-                    <a href="#donaciones" class="text-sm hover:underline">Donaciones</a>
-                    <a href="#disponibilidad" class="text-sm hover:underline">Disponibilidad/Precios</a>
-                </div>
-
-                <!-- Barra de búsqueda -->
-                <div class="hidden sm:block relative">
-                    <input 
-                        type="text" 
-                        placeholder="Buscar productos..." 
-                        class="px-4 py-2 rounded-lg text-gray-700 w-64 focus:outline-none focus:ring-2 focus:ring-purple-300">
-                </div>
-            </div>
-        </div>
     </nav>
 
     <!-- Carrusel -->
@@ -79,5 +58,6 @@
     </footer>
 
     <script src="index.js"></script>
+    <script src="../components/nav.js"></script>
 </body>
 </html>

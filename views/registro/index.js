@@ -4,6 +4,15 @@ const emailInput = document.querySelector('#email');
 const passwordInput = document.querySelector('#password');
 const matchInput = document.querySelector('#confirm-password');
 const btnRegistro = document.querySelector('button[type="submit"]');
+const spinner = document.createElement('div');
+
+spinner.innerHTML = `
+    <div class="flex justify-center items-center mt-4">
+        <img src="../img/favicon.png" class="w-16 h-16 animate-spin" alt="Spinner">
+    </div>
+`;
+spinner.style.display = "none";
+formulario.appendChild(spinner);
 
 const emailVal = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
 const passwordVal = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
@@ -16,13 +25,23 @@ let valname = false;
 nameInput.addEventListener('input', (e) => {
     valname = e.target.value.length >= 3;
     validar(nameInput, valname);
-    console.log(valname)
 });
 
-emailInput.addEventListener('input', e => {
-    console.log(e.target.value)
+emailInput.addEventListener('input', async (e) => {
     valemail = emailVal.test(e.target.value);
     validar(emailInput, valemail);
+    if (valemail) {
+        try {
+            const response = await axios.get(`/api/users/check-email?email=${emailInput.value}`);
+            if (response.data.exists) {
+                alert('Este correo ya está registrado.');
+                valemail = false;
+                validar(emailInput, valemail);
+            }
+        } catch (error) {
+            console.error('Error al verificar el correo:', error);
+        }
+    }
 });
 
 passwordInput.addEventListener('input', (e) => {
@@ -37,23 +56,30 @@ matchInput.addEventListener('input', (e) => {
     validar(passwordInput, valpass);
 });
 
-formulario.addEventListener('submit',async (e) => {
+formulario.addEventListener('submit', async (e) => {
     e.preventDefault();
     if (valname && valemail && valpass && valMatch) {
-        const newUser = {
-            name: nameInput.value,
-            email: emailInput.value,
-            password: passwordInput.value,
-            password2: matchInput.value
-        };
-        const response = await axios.post('/api/users',newUser);
-        console.log(response.status);
-        if(response.status === 200){
-            window.location.href = '/sesion/'
+        spinner.style.display = "block";
+        btnRegistro.disabled = true;
+        try {
+            const newUser = {
+                name: nameInput.value,
+                email: emailInput.value,
+                password: passwordInput.value,
+                password2: matchInput.value
+            };
+            const response = await axios.post('/api/users', newUser);
+            if (response.status === 200) {
+                window.location.href = '/sesion/';
+            }
+            alert('Registration successful!');
+            formulario.reset();
+        } catch (error) {
+            alert('Error en el registro');
+        } finally {
+            spinner.style.display = "none";
+            btnRegistro.disabled = false;
         }
-        alert('Registration successful!'); //cambiar a notification 
-        formulario.reset();
-       // console.log(response.status) 
     }
 });
 
@@ -68,4 +94,3 @@ const validar = (input, val) => {
         input.classList.add('focus:outline-red-700', 'outline-4');
     }
 };
-
