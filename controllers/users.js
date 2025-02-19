@@ -102,9 +102,11 @@ userRouter.get('/validar-confirmacion/:email',async (req,res)=>{
             //return res.redirect()
             //FALTA CREAR FRONT DE CONFIRMAR
         }
-    }catch(error){
-        console.log(error)
+    } catch (error) {
+        res.status(500).json({ message: "Error en el login.", error });
     }
 })
+
+userRouter.get(/)
 
 module.exports = userRouter

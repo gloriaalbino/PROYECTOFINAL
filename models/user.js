@@ -5,9 +5,17 @@ const mongoose = require('mongoose')
 //definir el esquema
 const userSchema = new mongoose.Schema({
     name:String,
-    email:String,
+    email:{
+        type: String,
+        required:true,
+        unique: true
+    },
     password:String,
-    rol:String,
+    rol:{
+        type:String,
+        enum: ['admin', 'user'],
+        default: 'user'
+    },
     varified:{
         type:Boolean,
         default:false
