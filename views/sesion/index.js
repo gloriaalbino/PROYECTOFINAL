@@ -37,18 +37,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const listadoArray = response.data.data;
             const usuario = listadoArray.some(user => user.email === email && user.password === password);
-            console.log(usuario);
-
             if (!usuario) {
                 if(listadoArray.some(user => user.email === email)) {
-                    listadoArray.forEach(user => {
+                   const lista = listadoArray.map(user => {
+                       // console.log(user.rol)
+                    if(user.email === email){    
                         if (user.rol === 'admin') {
                             window.location.href = '/admin/';
                         } else {
-                            window.location.href = '/dashboard/';
+                           window.location.href = '/dashboard/';
                         }
-                    });
-                } 
+                    }else{
+                        return user
+                    }
+                });
+                }
             } else {
                 alert("Invalid email or password.");
             }

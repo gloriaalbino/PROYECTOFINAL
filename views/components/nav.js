@@ -7,7 +7,7 @@ const crearNavPrincipal = ()=>{
                 <!-- Logo -->
                 <div class="flex items-center space-x-4">
                     <img src="/img/logo-sin-slogan.png" alt="logo" class="h-8 w-8">
-                    <span class="font-semibold text-lg">Productos Oncológicos</span>
+                    <span class="font-semibold text-lg">Rose</span>
                 </div>
 
                  <!-- Menú de escritorio -->
