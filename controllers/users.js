@@ -68,10 +68,10 @@ userRouter.get('/consultar-user',async(req,res)=>{
 })
 
 userRouter.get('/lista-users',async(req,res)=>{
-    //console.log('hola')
     try{
         const listado = await User.find()
         return res.status(200).json({textOk:true,data:listado})
+
     }catch(error){
         return res.status(400).json({error:"Ha ocurrido un error"})
     }
@@ -102,11 +102,12 @@ userRouter.get('/validar-confirmacion/:email',async (req,res)=>{
             //return res.redirect()
             //FALTA CREAR FRONT DE CONFIRMAR
         }
+
     } catch (error) {
         res.status(500).json({ message: "Error en el login.", error });
     }
 })
 
-userRouter.get(/)
+userRouter.get('/')
 
 module.exports = userRouter

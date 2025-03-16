@@ -6,7 +6,7 @@ const crearNavPrincipal = ()=>{
             <div class="flex justify-between items-center h-16">
                 <!-- Logo -->
                 <div class="flex items-center space-x-4">
-                    <img src="/img/logo-sin-slogan.png" alt="logo" class="h-8 w-8">
+                    <img src="./img/favicon.png" alt="logo" class="h-8 w-8">
                     <span class="font-semibold text-lg">Rose</span>
                 </div>
 
